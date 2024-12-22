@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <h1>Infinite Scroll Example</h1>
+    </header>
+
+    <main id="content">
+    @* Posts will load here *@
+    </main>
+
+    <div id="loading" style="text-align: center; padding: 1rem;">
+        <p>Loading...</p>
+    </div>
+
+    <footer>
+        &copy; @DateTime.Now.Year - MyApp
+    </footer>
+
+    <script>
+        // Keep track of page numbers
+        let page = 1;
+        // Prevent multiple requests at the same time
+        let isLoading = false;
+
+        // Function to load more posts
+        async function loadPosts() {
+            if (isLoading) return; 
+            isLoading = true;
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch(`/Home/GetPosts?page=${page}&pageSize=10`);
+                const posts = await response.json();
+
+                const contentDiv = document.getElementById('content');
+                posts.forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p>${post.content}</p>
+                    `;
+                    contentDiv.appendChild(postDiv);
+                });
+
+                if (posts.length > 0) {
+                    page++; 
+                } else {
+                    document.getElementById('loading').innerHTML = "<p>No more posts</p>";
+                }
+            } catch (err) {
+                console.error('Error loading posts:', err);
+            }
+
+            isLoading = false;
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Infinite scroll event
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+                loadPosts();
+            }
+        });
+
+        // Initial load
+        loadPosts();
+    </script>
+</body>
+</html>
