@@ -3,20 +3,126 @@ html, body {
     margin: 0; 
     display: flex;
     flex-direction: column;
+    background-color: rgba(0, 0, 0, 1);
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Exo", sans-serif;
+    font-weight: 200;
+    color: aliceblue;
+    margin: 0;
 }
 
-h1 {
-    color: #333;
+nav {
+    background-color: rgba(243, 241, 245, 0.049);
+    padding: 0.65rem;
+    font-size: 1.8rem;
 }
 
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+
+.nav-links a:hover {
+    background-color: rgba(229, 234, 239, 1);
+    padding: 0.15rem 2rem;
+    color: black;
+}
+
+.nav-links li {
+    align-items: center;
+}
+
+.nav-links li:not(:last-child)::after {
+    content: "|"; 
+    color: white; 
+    margin-left: 4rem;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none; 
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+/* Footer */
 footer {
     background-color: #171616;
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+@media (max-width: 987px){
+    .nav-links a:hover {
+        background-color: rgba(229, 234, 239, 1);
+        padding: 0.15rem 1rem;
+        color: black;
+    }  
+
+    .nav-links li:not(:last-child)::after {
+        content: "|"; 
+        color: white; 
+        margin-left: 3rem;
+    }
+    
+}
+
+/* Mobile View */ 
+@media (max-width: 768px) {
+    
+    nav {
+        padding: 0.1rem;
+    }
+
+    .hamburger {
+        display: block; 
+        padding: 0.5rem;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column; 
+        width: 100%; 
+        padding: 1rem 0;
+        gap: 1rem;
+        background-color: rgba(20, 1, 40, 0.030);
+    }
+
+    .nav-links.active {
+        display: flex; 
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 0.5rem; 
+        text-align: center;
+    }
+
+    .nav-links a:hover {
+        background-color: rgba(229, 234, 239, 1);
+        padding: 0.15rem 3rem;
+        color: black;
+    }
+
+    .nav-links li::after {
+        display: none;
+        content: ""; 
+    }
 }
