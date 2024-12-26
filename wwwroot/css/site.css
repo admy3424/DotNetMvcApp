@@ -13,11 +13,12 @@ body {
     margin: 0;
 }
 
+/* Nav Bar */
 nav {
-    background-color: rgba(243, 241, 245, 0.049);
-    padding: 0.65rem;
-    font-size: 1.8rem;
+    /* background-color: rgba(243, 241, 245, 0.049); */
+    background-color: rgba(23, 22, 22, 0.5);
 }
+
 
 .nav-links {
     list-style: none;
@@ -33,12 +34,10 @@ nav {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    border-radius: 0.5rem;
 }
 
 .nav-links a:hover {
     background-color: rgba(229, 234, 239, 1);
-    padding: 0.15rem 2rem;
     color: black;
 }
 
@@ -46,83 +45,108 @@ nav {
     align-items: center;
 }
 
-.nav-links li:not(:last-child)::after {
-    content: "|"; 
-    color: white; 
-    margin-left: 4rem;
-}
-
 /* Hamburger Menu */
 .hamburger {
     display: none; 
-    font-size: 2rem;
-    cursor: pointer;
-    color: white;
 }
 
 /* Footer */
 footer {
-    background-color: #171616;
+    /* background-color: #171616; */
+    background-color: rgba(23, 22, 22, 0.5);
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
+    padding: 1rem;
 }
 
-@media (max-width: 987px){
-    .nav-links a:hover {
-        background-color: rgba(229, 234, 239, 1);
-        padding: 0.15rem 1rem;
-        color: black;
-    }  
-
-    .nav-links li:not(:last-child)::after {
-        content: "|"; 
-        color: white; 
-        margin-left: 3rem;
-    }
-    
-}
-
-/* Mobile View */ 
-@media (max-width: 768px) {
-    
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) { 
     nav {
-        padding: 0.1rem;
-    }
-
-    .hamburger {
-        display: block; 
-        padding: 0.5rem;
+        font-size: 1.2rem;
     }
 
     .nav-links {
         display: none;
         flex-direction: column; 
-        width: 100%; 
         padding: 1rem 0;
-        gap: 1rem;
+        gap: 1.3rem;
         background-color: rgba(20, 1, 40, 0.030);
     }
 
     .nav-links.active {
         display: flex; 
     }
-
+ 
     .nav-links a {
         width: 100%;
-        padding: 0.5rem; 
         text-align: center;
     }
 
     .nav-links a:hover {
-        background-color: rgba(229, 234, 239, 1);
         padding: 0.15rem 3rem;
-        color: black;
     }
 
-    .nav-links li::after {
-        display: none;
-        content: ""; 
+    .hamburger {
+        display: block; 
+        font-size: 1.9rem;
+        cursor: pointer;
+        color: white;
+        padding: 0.2rem;
+    }
+} 
+
+/* Smaller devices (between 600px & 768px) */
+@media only screen 
+and (min-width : 600px) 
+and (max-width : 768px) {
+    nav {
+        padding: 0.55rem;
+        font-size: 1.6rem;
+    }
+
+    .nav-links a {
+        padding: 0.15rem 1rem;
+    }
+}
+
+/* Medium devices (between 768px and 992px) */
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 992px) {
+    nav {
+        padding: 0.62rem;
+        font-size: 1.68rem;
+    }
+
+    .nav-links a {
+        padding: 0.15rem 1.3rem;
+    }
+}
+
+/* Large devices (between 992px and 1200px) */
+@media only screen 
+and (min-width : 992px) 
+and (max-width : 1200px) {
+    nav {
+        padding: 0.7rem;
+        font-size: 1.8rem;
+    }
+
+    .nav-links a {
+        padding: 0.15rem 1.9rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    nav {
+        padding: 0.78rem;
+        font-size: 1.9rem;
+    }
+
+    .nav-links a {
+        padding: 0.15rem 4rem;
     }
 }
