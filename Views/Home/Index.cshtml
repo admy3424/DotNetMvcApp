@@ -1,3 +1,5 @@
+@model List<string>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -5,33 +7,126 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@ViewData["Title"]</title>
         <link rel="stylesheet" href="~/css/site.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Exo:wght@200&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet" />
+
+        <!--=============== FONT AWESOME ===============-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
+
     <body>
+        <!--=============== HEADER ===============-->
         <header>
-            <nav>
-                <div class="hamburger" onclick="toggleMenu()">☰</div>
-                <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">GeoInt</a></li>
-                    <li><a href="/">InfoSec</a></li>
-                    <li><a href="/">Contact</a></li>
-                </ul>
+            <nav class="nav">
+                <div class="container">
+                    <h1 class="logo"><a href="/"> MAYA ADDISU</a></h1>
+                    <ul>
+                        <li><a href="/">HOME</a></li>
+                        <li><a href="/">GEOINT</a></li>
+                        <li><a href="/">INFOSEC</a></li>
+                        <li><a href="/">CONTACT</a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
 
-        <main id="content">
+        <!--=============== MAIN ===============-->
+        <main>
+            <section>
+                <div class="hero">
+                    <div class="container">
+                        <h1>Welcome to my website</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </div>
+            </section>
+            <section class="gisproject1">
+                <div class="container content">
+                    <h2>GIS PROJECT I</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint inventore aliquam iusto eligendi doloremque perferendis, delectus corporis, harum dignissimos, accusamus saepe a ipsam suscipit alias. Fugit animi debitis similique placeat!</p>
+                </div>  
+                <div class="carousel_container">
+                    <div class="carousel-track">
+                        @foreach (var image in Model)
+                        {
+                            <div class="carousel-slide">
+                                <img src="@image" alt="Slide">
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-btn prev-btn" onclick="prevSlide()">&#10094;</button>
+                    <button class="carousel-btn next-btn" onclick="nextSlide()">&#10095;</button>
+                </div>
+            </section>
+            <section class="gisproject2">
+                <div class="container content">
+                    <h2>GIS PROJECT II</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint inventore aliquam iusto eligendi doloremque perferendis, delectus corporis, harum dignissimos, accusamus saepe a ipsam suscipit alias. Fugit animi debitis similique placeat!</p>
+                </div>
+                <div class="carousel_container">
+                    <div class="carousel-track">
+                        @foreach (var image in Model)
+                        {
+                            <div class="carousel-slide">
+                                <img src="@image" alt="Slide">
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-btn prev-btn" onclick="prevSlide()">&#10094;</button>
+                    <button class="carousel-btn next-btn" onclick="nextSlide()">&#10095;</button>
+                </div>
+            </section>
         </main>
 
+        <!--=============== FOOTER ===============-->
         <footer>
             &copy; @DateTime.Now.Year - MyApp
         </footer>
 
+         <!--=============== STICKY NAV SCRIPT===============-->
         <script>
-            function toggleMenu() {
+            const nav = document.querySelector(".nav");
+            window.addEventListener("scroll", fixNav);
+
+            function fixNav() {
+                if (window.scrollY > nav.offsetHeight + 10) {
+                    nav.classList.add("active");
+                } else {
+                    nav.classList.remove("active");
+                }
+            }
+        </script>
+
+        <!--=============== CAROUSEL SCRIPT ===============-->
+        <script>
+             function toggleMenu() {
                 const navLinks = document.querySelector('.nav-links');
                 navLinks.classList.toggle('active');
             }
-        </script>
+
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+            let index = 0;
+
+            function showSlide(index) {
+                const slideWidth = slides[0].clientWidth;
+                track.style.transform = `translateX(${-index * slideWidth}px)`;
+            }
+
+            function nextSlide() {
+                index = (index + 1) % slides.length;
+                showSlide(index);
+            }
+
+            function prevSlide() {
+                index = (index - 1 + slides.length) % slides.length;
+                showSlide(index);
+            }
+
+            // Auto-slide every 3 seconds
+            setInterval(nextSlide, 3000);
+
+            // Initial slide
+            showSlide(index);
+        </script>    
     </body>
 </html>
