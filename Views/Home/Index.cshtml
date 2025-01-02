@@ -1,5 +1,3 @@
-@model List<string>
-
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -16,117 +14,45 @@
     <body>
         <!--=============== HEADER ===============-->
         <header>
-            <nav class="nav">
-                <div class="container">
-                    <h1 class="logo"><a href="/"> MAYA ADDISU</a></h1>
+            <div class="intro">
+                <h1>Welcome to my website</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                <nav>
                     <ul>
-                        <li><a href="/">HOME</a></li>
-                        <li><a href="/">GEOINT</a></li>
-                        <li><a href="/">INFOSEC</a></li>
-                        <li><a href="/">CONTACT</a></li>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#geoint">GEOINT</a></li>
+                        <li><a href="#infosec">INFOSEC</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
                     </ul>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </header>
 
         <!--=============== MAIN ===============-->
         <main>
-            <section>
-                <div class="hero">
-                    <div class="container">
-                        <h1>Welcome to my website</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                    </div>
-                </div>
-            </section>
-            <section class="gisproject1">
-                <div class="container content">
+            <section id="=geoint">
+                <div class="gisproject1">
                     <h2>GIS PROJECT I</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint inventore aliquam iusto eligendi doloremque perferendis, delectus corporis, harum dignissimos, accusamus saepe a ipsam suscipit alias. Fugit animi debitis similique placeat!</p>
-                </div>  
-                <div class="carousel_container">
-                    <div class="carousel-track">
-                        @foreach (var image in Model)
-                        {
-                            <div class="carousel-slide">
-                                <img src="@image" alt="Slide">
-                            </div>
-                        }
-                    </div>
-                    <button class="carousel-btn prev-btn" onclick="prevSlide()">&#10094;</button>
-                    <button class="carousel-btn next-btn" onclick="nextSlide()">&#10095;</button>
                 </div>
-            </section>
-            <section class="gisproject2">
-                <div class="container content">
+                <div class="gisproject2">
                     <h2>GIS PROJECT II</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint inventore aliquam iusto eligendi doloremque perferendis, delectus corporis, harum dignissimos, accusamus saepe a ipsam suscipit alias. Fugit animi debitis similique placeat!</p>
                 </div>
-                <div class="carousel_container">
-                    <div class="carousel-track">
-                        @foreach (var image in Model)
-                        {
-                            <div class="carousel-slide">
-                                <img src="@image" alt="Slide">
-                            </div>
-                        }
-                    </div>
-                    <button class="carousel-btn prev-btn" onclick="prevSlide()">&#10094;</button>
-                    <button class="carousel-btn next-btn" onclick="nextSlide()">&#10095;</button>
-                </div>
+            </section>
+
+            <section id="=infosec">
+                
+            </section>
+
+            <section id="=contact">
+
             </section>
         </main>
 
         <!--=============== FOOTER ===============-->
         <footer>
             &copy; @DateTime.Now.Year - MyApp
-        </footer>
-
-         <!--=============== STICKY NAV SCRIPT===============-->
-        <script>
-            const nav = document.querySelector(".nav");
-            window.addEventListener("scroll", fixNav);
-
-            function fixNav() {
-                if (window.scrollY > nav.offsetHeight + 10) {
-                    nav.classList.add("active");
-                } else {
-                    nav.classList.remove("active");
-                }
-            }
-        </script>
-
-        <!--=============== CAROUSEL SCRIPT ===============-->
-        <script>
-             function toggleMenu() {
-                const navLinks = document.querySelector('.nav-links');
-                navLinks.classList.toggle('active');
-            }
-
-            const track = document.querySelector('.carousel-track');
-            const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-            let index = 0;
-
-            function showSlide(index) {
-                const slideWidth = slides[0].clientWidth;
-                track.style.transform = `translateX(${-index * slideWidth}px)`;
-            }
-
-            function nextSlide() {
-                index = (index + 1) % slides.length;
-                showSlide(index);
-            }
-
-            function prevSlide() {
-                index = (index - 1 + slides.length) % slides.length;
-                showSlide(index);
-            }
-
-            // Auto-slide every 3 seconds
-            setInterval(nextSlide, 3000);
-
-            // Initial slide
-            showSlide(index);
-        </script>    
+        </footer> 
     </body>
 </html>
