@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore
 
     - name: Build Application
-      run: dotnet publish -c Release -o ./publish
+      run: dotnet publish ./DotNetMvcApp.csproj -c Release -o ./publish
 
     - name: Package Application
       run: |
