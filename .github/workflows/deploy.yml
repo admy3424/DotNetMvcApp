@@ -27,7 +27,7 @@ jobs:
     - name: Package Application
       run: |
         cd ./publish
-        zip -r ../app.zip .
+        zip -r ../app-${{ github.run_id }}.zip .
         cd ..
 
     - name: Deploy to Elastic Beanstalk
@@ -39,4 +39,4 @@ jobs:
         environment_name: ${{ secrets.ENV_NAME }}
         version_label: ${{ github.sha }}-${{ github.run_id }}
         region: ${{ secrets.AWS_REGION }}
-        deployment_package: app.zip
+        deployment_package: app-${{ github.run_id }}.zip
