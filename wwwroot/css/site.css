@@ -7,6 +7,8 @@
 
 * {
     box-sizing: border-box;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: 0;
     margin: 0;
     padding: 0;
 }
@@ -69,17 +71,73 @@ nav ul li a:hover {
     color: var(--accent-color);
 }
 
+/*=============== CAROUSEL ===============*/
+.carousel-container {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    transition: transform 0.5s;
+}
+
+.carousel-slide img {
+    width: 100%;
+    display: block;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background: lightgray;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: gray;
+}
+
 /*=============== GEOINT ===============*/
-.gisproject1 {
+.gisproject1, .gisproject2 {
     margin: 2rem;
 }
 
 .gisproject1 h2 {
     margin: 1rem 0;
-}
-
-.gisproject2 {
-    margin: 2rem;
 }
 
 .gisproject2 h2 {
@@ -90,4 +148,22 @@ nav ul li a:hover {
 footer {
     text-align: center;
     padding: 1rem;
+}
+
+
+/*=============== RESPONSIVE STYLES ===============*/
+@media (max-width: 768px) {
+    
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+
+}
+
+@media (min-width: 1200px) {
+
 }
