@@ -22,12 +22,12 @@ jobs:
       run: dotnet restore
 
     - name: Build Application
-      run: dotnet publish -c Release -o ./publish
+      run: dotnet publish ./DotNetMvcApp.csproj -c Release -r linux-x64 --self-contained true -o ./publish
 
     - name: Package Application
       run: |
         cd ./publish
-        zip -r ../app.zip .
+        zip -r ../app-${{ github.run_id }}.zip .
         cd ..
 
     - name: Deploy to Elastic Beanstalk
@@ -37,6 +37,6 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: ${{ secrets.APP_NAME }}
         environment_name: ${{ secrets.ENV_NAME }}
-        version_label: ${{ github.sha }}
+        version_label: ${{ github.sha }}-${{ github.run_id }}
         region: ${{ secrets.AWS_REGION }}
-        deployment_package: app.zip
+        deployment_package: app-${{ github.run_id }}.zip
